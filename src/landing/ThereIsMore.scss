@@ -1,0 +1,18 @@
+.thereIsMore {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  justify-content: space-around;
+  margin: 1em auto;
+  img {
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+  }
+  button {
+    background-color: whitesmoke;
+    border-radius: 60px;
+    padding: 0.5em;
+    margin-left: 1em;
+  }
+}

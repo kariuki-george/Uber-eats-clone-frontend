@@ -1,0 +1,13 @@
+.map {
+  padding: 2em;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+  }
+  .map {
+    height: 500px;
+    width: 100%;
+    background-color: whitesmoke;
+  }
+}

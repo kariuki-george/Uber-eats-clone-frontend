@@ -1,0 +1,14 @@
+.countries {
+  padding: 2em;
+
+  ul {
+    margin: 2em 0px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    li {
+      width: 150px;
+      margin: 1em;
+    }
+  }
+}

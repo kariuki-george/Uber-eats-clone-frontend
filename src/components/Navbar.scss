@@ -1,0 +1,36 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1440px;
+  background-color: transparent;
+  margin: auto;
+  padding: 1em;
+  position: fixed;
+  top: 0px;
+  align-items: center;
+  z-index: 1000;
+
+  img {
+    width: 150px;
+    margin-left: 2em;
+  }
+
+  form {
+    input {
+      height: 55px;
+      width: 50vw;
+      background-color: whitesmoke;
+      border-bottom: 1px gray solid;
+      outline: none;
+      padding-left: 1em;
+      font-size: 1.2em;
+    }
+  }
+  button {
+    background-color: white;
+    width: 150px;
+    height: 55px;
+    border-radius: 50px;
+  }
+}

@@ -1,0 +1,21 @@
+.business {
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
+  .feed,
+  .restaurant,
+  .deliver {
+    img {
+      object-fit: cover;
+      width: 30vw;
+      height: 200px;
+    }
+    display: flex;
+    flex-direction: column;
+
+    a {
+      text-decoration: underline;
+      margin: 0.5em;
+    }
+  }
+}
