@@ -17,12 +17,11 @@ function Modal({ closeModal, handleClose }) {
       data.append("file", img);
       data.append("upload_preset", "smiley");
       data.append("cloud_name", "smiley-geek");
-      console.log(process.env.REACT_APP_CLOUDINARY_URL);
+
       const response = await Axios.post(
         process.env.REACT_APP_CLOUDINARY_URL,
         data
       );
-      console.log(response);
 
       return response.data.secure_url;
     } catch (error) {
