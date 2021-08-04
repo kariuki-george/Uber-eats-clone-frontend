@@ -18,7 +18,7 @@ function Business() {
           alt=""
         />
         <span>Your restaurant, delivered</span>
-        <Link>Add your restaurant</Link>
+        <Link to='/restaurant'>Add your restaurant</Link>
       </div>
       <div className="deliver">
         <img

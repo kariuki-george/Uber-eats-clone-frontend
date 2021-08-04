@@ -22,7 +22,7 @@ function Search() {
         <form action="">
           <input type="text" placeholder={` Enter delivery address`} />
           <select name="" id="">
-            <option value="">Delivor now</option>
+            <option value="">Deliver now</option>
             <option value="">Schedule for later</option>
           </select>
           <button>Find Food</button>
