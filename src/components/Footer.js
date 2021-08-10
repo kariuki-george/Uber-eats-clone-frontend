@@ -76,13 +76,13 @@ function Footer() {
       <div className="bottom">
         <div className="top">
           <div>
-            <a href="https://www.facebook.com/ubereats">
+            <a target="_blank" href="https://www.facebook.com/ubereats">
               <FacebookIcon />
             </a>
-            <a href="https://www.twitter.com/ubereats">
+            <a target="_blank" href="https://www.twitter.com/ubereats">
               <TwitterIcon />
             </a>
-            <a href="https://www.instagram.com/ubereats">
+            <a target="_blank" href="https://www.instagram.com/ubereats">
               <InstagramIcon />
             </a>
           </div>

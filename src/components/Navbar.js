@@ -1,8 +1,13 @@
 import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import "./Navbar.scss";
+import { useHistory } from "react-router-dom";
 
 function Navbar() {
+  const history = useHistory();
+  const handleLogin = () => {
+    history.push("/login");
+  };
   return (
     <div className="navbar">
       <div className="left">
@@ -18,12 +23,12 @@ function Navbar() {
 
       <div className="center">
         <form action="">
-          <input type="text" placeholder='Enter delivery address'/>
+          <input type="text" placeholder="Enter delivery address" />
         </form>
       </div>
 
       <div className="left">
-        <button>sign In</button>
+        <button onClick={handleLogin}>sign In</button>
       </div>
     </div>
   );

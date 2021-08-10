@@ -1,13 +1,14 @@
 import React from "react";
-
-import Sidebar from "./Sidebar";
-import Mainbar from "./Mainbar";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <div>
-      <Sidebar />
-      <Mainbar />
+      Want to own your own restaurant?
+      <a href="https://uber-eats-restaurant.netlify.app" target="_blank">
+        yes
+      </a>
+      <Link to="/">no</Link>
     </div>
   );
 }

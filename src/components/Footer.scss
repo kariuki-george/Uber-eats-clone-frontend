@@ -1,9 +1,10 @@
 footer {
-  background-color: black;
-  color: white;
+  background-color: var(--background-color);
+  color: var(--color);
   display: flex;
   flex-direction: column;
   padding: 2em;
+  border: 1px var(--border-color) solid;
 
   .top {
     padding-bottom: 2em;
@@ -37,7 +38,7 @@ footer {
   }
 
   .bottom {
-    border-top: 1px white solid;
+    border-top: 1px var(--border-color) solid;
     padding-top: 1em;
 
     a {
