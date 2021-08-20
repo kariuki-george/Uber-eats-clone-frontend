@@ -1,0 +1,49 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 1em;
+  width: 300px;
+  height: 700px;
+
+  background-color: var(--background-color);
+  border: 1px var(--border-color) solid;
+  .results {
+    display: flex;
+    flex-direction: column;
+  }
+  span {
+    margin: 1em;
+  }
+  h5 {
+    margin-top: 1em 4px;
+  }
+  input {
+    margin: 0.5em;
+    height: 20px;
+    width: 20px;
+  }
+  .price {
+    display: flex;
+    flex-direction: column;
+    div {
+      display: flex;
+    }
+  }
+
+  .sort {
+    display: flex;
+    flex-direction: column;
+    div {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .delivery,
+  .dietary {
+    display: flex;
+    flex-direction: column;
+    span {
+      margin: 3px;
+    }
+  }
+}

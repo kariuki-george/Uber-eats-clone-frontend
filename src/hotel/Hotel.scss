@@ -1,0 +1,65 @@
+.hotel {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  .hero {
+    position: relative;
+    margin-top: 50px;
+    img {
+      height: 250px;
+      width: 100%;
+      object-fit: cover;
+    }
+    h3 {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
+  }
+  .menu {
+    display: flex;
+  }
+  .menu:hover {
+    background-color: whitesmoke;
+  }
+  .Menu {
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        width: 300px;
+        height: 150px;
+        display: flex;
+
+        img {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+        }
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          h5 {
+            margin: 2em 1em;
+          }
+          h6 {
+            margin: 0px 1em;
+          }
+        }
+      }
+    }
+  }
+  span {
+    position: relative;
+    bottom: 20px;
+  }
+}

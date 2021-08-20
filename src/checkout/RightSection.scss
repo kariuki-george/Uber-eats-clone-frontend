@@ -1,0 +1,40 @@
+.rightSection {
+  width: 50vw;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  right: 0px;
+  padding: 5em;
+
+  background-color: var(--modal-background-color);
+
+  .placeorder {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1em;
+    button {
+      width: 100%;
+      margin-bottom: 2em;
+    }
+    border-bottom: 1px var(--border-color) solid;
+  }
+  .fees,
+  .total {
+    display: flex;
+    width: 100%;
+    margin: 1em;
+    justify-content: space-between;
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .total {
+    border-top: 1px var(--border-color) solid;
+    padding: 1em;
+  }
+}

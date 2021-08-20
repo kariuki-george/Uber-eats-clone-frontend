@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
+import Navbar from "./Navbar";
 import Search from "./Search";
 import ThereIsMore from "./ThereIsMore";
 import Map from "./Map";

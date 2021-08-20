@@ -42,17 +42,11 @@
       font-size: 1.2em;
       margin: 0.5em;
       height: 55px;
-      background-color: white;
-      color: black;
+
       padding: 0.7em;
     }
-    button {
-      background-color: black;
-      color: white;
-    }
-    button:hover {
-      color: black;
-      background-color: white;
+    select {
+      color: var(--color);
     }
   }
   h6 {

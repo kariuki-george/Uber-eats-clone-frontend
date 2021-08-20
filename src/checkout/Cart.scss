@@ -1,0 +1,16 @@
+.cart {
+  position: absolute;
+  right: 30px;
+  top: 60px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  .top {
+    display: flex;
+    justify-content: space-between;
+  }
+  button {
+    width: 100%;
+  }
+}

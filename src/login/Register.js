@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Axios from "axios";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../services/auth";
+import { clearState } from "../state/slices/authReducer";
 
 function Register() {
   const [name, setName] = useState("");
@@ -8,34 +12,40 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { isFetching, isError, isSuccess, errorMessage } = useSelector(
+    (state) => state.user
+  );
+
   const handleRegister = async (e) => {
     e.preventDefault();
+    dispatch(clearState());
     if (password !== confirmPassword) {
       setPassword("");
       setConfirmPassword("");
       return alert("password is not the same as confirm password");
     }
     if (name && email && password) {
-      const response = await Axios.post(
-        `${process.env.REACT_APP_API_URL}/register`,
-        {
-          username: name,
-          email,
-          password,
-        }
-      );
-
-      if (response.data === "hello") {
-        alert("Account created Successfully");
-        return history.replace("/login");
-      } else {
-        const { email, username } = response.data;
-
-        return alert(`${email ? email : password} is already taken`);
-      }
+      return dispatch(register({ name, email, password }));
     }
     return alert("Ensure all fields are filled");
   };
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(errorMessage);
+      dispatch(clearState());
+      history.replace("/login");
+    }
+    if (isError) {
+      toast.error(errorMessage);
+      dispatch(clearState());
+    }
+  }, [isSuccess, isError]);
 
   return (
     <div className="register">

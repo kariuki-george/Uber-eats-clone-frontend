@@ -1,4 +1,6 @@
 import "./App.scss";
+import { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,56 +11,74 @@ import {
 import Landing from "./landing/Landing";
 import Restaurant from "./restaurant/Home";
 import Home from "./home/Home";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Login from "./login/Login";
 import Register from "./login/Register";
+import Hotel from "./hotel/Hotel";
+import Checkout from "./checkout/Checkout";
+import Backdrop from "./components/Backdrop";
+import Slider from "./components/Slider";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [dark, setDark] = useState(false);
+  const { theme } = useSelector((state) => state.theme);
+
   const history = useHistory();
 
   useEffect(() => {
     document.body.classList.remove("dark");
     document.body.classList.remove("light");
-    dark
+    theme === ".dark"
       ? document.body.classList.add("dark")
       : document.body.classList.add("light");
-  }, [dark]);
-  const login = () => {
-    !loggedIn && history.push("/login");
-    return loggedIn;
-  };
+  }, [theme]);
+
   return (
     <div className="App">
+      <Toaster />
+
       <Router>
+        <Slider />
+        <Backdrop />
         <Switch>
           <Route path="/landing" exact>
             <Landing />
           </Route>
-          <Route path="/" exact>
-            <Home />
-          </Route>
           <Route path="/login" exact>
-            <Login setLoggedIn={setLoggedIn} />
+            <Login />
           </Route>
           <Route path="/register" exact>
             <Register />
           </Route>
-          <Route path="/business">
-            Business page is still under construction
-          </Route>
-          <Route path="/driver">Driver page is still under construction</Route>
           <Route path="/restaurant">
             <Restaurant />
           </Route>
-          <Route path="*">
-            error: this page does not exist or access is forbidden
-          </Route>
+          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/checkout" component={Checkout} />
+          <PrivateRoute exact path="/hotel:id" component={Hotel} />
+          <Redirect from="*" to="/" />
         </Switch>
       </Router>
     </div>
   );
 }
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const { isLoggedIn } = useSelector((state) => state.user);
+
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isLoggedIn ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: "/landing", state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+};
 
 export default App;
