@@ -37,7 +37,7 @@ const login = createAsyncThunk("user/login", async (user, thunkAPI) => {
     } else {
       const user = response.data;
 
-      localStorage.setItem("user", user);
+      localStorage.setItem("user", JSON.stringify(user));
 
       return user;
     }

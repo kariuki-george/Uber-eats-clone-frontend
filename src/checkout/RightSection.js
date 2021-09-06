@@ -1,11 +1,22 @@
-import React from 'react'
-import './RightSection.scss'
+import React, { useState, useEffect } from "react";
+import "./RightSection.scss";
 
-function RightSection() {
-    return (
-        <div className='rightSection'>
-            <div className="placeorder">
-        <button>Place Order</button>
+function RightSection({ subTotal, handlePlaceOrder }) {
+  const [subtotal, setSubtotal] = useState(0);
+  const [service, setService] = useState(0);
+  const [delivery, setDelivery] = useState(0);
+
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    setService(subTotal * 0.1);
+    setDelivery(subTotal * 0.1);
+    setTotal(subTotal + service + delivery);
+  }, [subTotal]);
+
+  return (
+    <div className="rightSection">
+      <div className="placeorder">
+        <button onClick={handlePlaceOrder}>Place Order</button>
         <h6>
           If you’re not around when the delivery person arrives, they’ll leave
           your order at the door. By placing your order, you agree to take full
@@ -14,25 +25,23 @@ function RightSection() {
       </div>
       <div className="fees">
         <h6>Subtotal</h6>
-        <h6>Ksh 400</h6>
+        <h6>Ksh {subtotal}</h6>
       </div>
-      <div className="fees">
-        <h6>Fees</h6>
-      </div>
+
       <div className="fees">
         <h6>Service</h6>
-        <h6>Ksh 40</h6>
+        <h6>Ksh {service}</h6>
       </div>
       <div className="fees">
         <h6>Delivery</h6>
-        <h6>Ksh 80</h6>
+        <h6>Ksh {delivery}</h6>
       </div>
       <div className="total">
         <h5>Total</h5>
-        <h5>Ksh 5000</h5>
+        <h5>Ksh {total}</h5>
       </div>
-        </div>
-    )
+    </div>
+  );
 }
 
-export default RightSection
+export default RightSection;

@@ -9,8 +9,11 @@ function Navbar() {
   const { show } = useSelector((state) => state.slider);
   const history = useHistory();
   const dispatch = useDispatch();
+  const { orders } = useSelector((state) => state.orders);
 
-  const handleCart = () => {};
+  const handleCart = () => {
+    history.push("/checkout");
+  };
   const handleSlider = () => {
     show ? dispatch(hideSlide()) : dispatch(showSlide());
   };
@@ -35,7 +38,7 @@ function Navbar() {
       </div>
 
       <div className="left">
-        <button onClick={handleCart}>Cart.1</button>
+        <button onClick={handleCart}>Cart {orders.length}</button>
       </div>
     </div>
   );

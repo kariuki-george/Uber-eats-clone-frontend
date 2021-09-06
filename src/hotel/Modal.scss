@@ -1,11 +1,11 @@
 .foodorder {
   background-color: var(--background-color);
   border: 1px var(--border-color) solid;
-  width: 70vw;
-  height: 500px;
-  position: absolute;
+  width: 60vw;
+  height: 400px;
+  position: fixed;
   z-index: 100;
-  top: 200px;
+  top: 100px;
   right: 0;
   left: 0;
   margin: auto;
@@ -23,6 +23,7 @@
     img {
       height: 100%;
       width: 100%;
+      min-width: 300px;
       object-fit: cover;
     }
   }
@@ -41,7 +42,20 @@
     }
     .bottom {
       display: flex;
+
       justify-content: space-between;
+
+      .left,
+      .right_bottom {
+        display: flex;
+        align-items: baseline;
+
+        h4,
+        button {
+          margin-right: 1em;
+          height: 40px;
+        }
+      }
     }
   }
 }

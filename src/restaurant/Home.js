@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div>
-      Want to own your own restaurant?
+      <h3>Want to own your own restaurant?</h3>
+
       <a href="https://uber-eats-restaurant.netlify.app" target="_blank">
         yes
       </a>

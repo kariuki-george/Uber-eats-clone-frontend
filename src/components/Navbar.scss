@@ -14,6 +14,10 @@
   align-items: center;
   z-index: 1000;
 
+  .left {
+    display: flex;
+  }
+
   h5 {
     padding: 0.75em;
     border-radius: 30px;

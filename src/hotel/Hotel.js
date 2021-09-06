@@ -56,6 +56,7 @@ function Hotel() {
                 key={food._id}
                 onClick={() => {
                   setModalInfo(food);
+                  
                   setShowModal(true);
                 }}
               >

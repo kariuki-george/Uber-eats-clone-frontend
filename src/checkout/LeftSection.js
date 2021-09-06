@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./LeftSection.scss";
 import Navbar from "./Navbar";
 
-function LeftSection() {
+function LeftSection({ orders }) {
   return (
     <div className="leftSection">
       <Navbar />
+
+      <h2>Choose where to order from</h2>
+
       <h3>Dam View Res</h3>
       <div className="map">map</div>
       <div className="location">
@@ -20,15 +23,24 @@ function LeftSection() {
       </div>
       <div className="items">
         <ul>
-          <li>
-            <div>
-              <h6>00</h6>
-              <h5>Lyonnaise Potatoes</h5>
-            </div>
-            <div>
-              <h5>Ksh 2000</h5>
-            </div>
-          </li>
+          {orders.map((order) => {
+            return (
+              <li>
+                <div>
+                  <h6>{order.food_amount}</h6>
+                  <h5>{order.name}</h5>
+                </div>
+                <div>
+                  <h5>{order.food_amount * order.price}</h5>
+                </div>
+                {orders.length > 1 && (
+                  <div>
+                    <input type="checkbox" name="" id="" />
+                  </div>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </div>
       <input type="text" placeholder="Add a note for the store" />
