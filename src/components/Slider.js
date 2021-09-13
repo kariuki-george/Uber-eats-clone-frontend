@@ -8,7 +8,7 @@ import { logout } from "../services/auth";
 
 function Slider() {
   const { theme } = useSelector((state) => state.theme);
-  const { isLoggedIn, user } = useSelector((state) => state.user);
+  const { isLoggedIn, userData } = useSelector((state) => state.user);
   const { show } = useSelector((state) => state.slider);
   const [width, setWidth] = useState(-300);
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ function Slider() {
           <div className="avatar">
             <img src="" alt="" />
             <div>
-              <h4> Hi {user.username}</h4>
+              <h4> Hi {userData.username}</h4>
               <Link>View account</Link>
             </div>
           </div>
