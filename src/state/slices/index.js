@@ -5,5 +5,13 @@ import slider from "./sliderSlice";
 import restaurant from "./restaurantSlice";
 import orders from "./ordersSlice";
 
-const reducer = combineReducers({ user, theme, slider, restaurant, orders });
+
+const reducer = combineReducers({
+  user,
+  theme,
+  slider,
+  restaurant,
+  orders,
+
+});
 export default reducer;

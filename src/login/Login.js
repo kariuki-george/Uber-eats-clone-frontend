@@ -32,6 +32,7 @@ function Login() {
     }
     if (isSuccess) {
       history.replace("/home");
+      dispatch(clearState());
     }
   }, [isError, isSuccess]);
 

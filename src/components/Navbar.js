@@ -9,7 +9,7 @@ function Navbar() {
   const { show } = useSelector((state) => state.slider);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { orders } = useSelector((state) => state.orders);
+  const { cart } = useSelector((state) => state.user.userData);
 
   const handleCart = () => {
     history.push("/checkout");
@@ -38,7 +38,7 @@ function Navbar() {
       </div>
 
       <div className="left">
-        <button onClick={handleCart}>Cart {orders.length}</button>
+        <button onClick={handleCart}>Cart {cart.length}</button>
       </div>
     </div>
   );

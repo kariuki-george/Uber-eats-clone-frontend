@@ -12,7 +12,7 @@ const register = createAsyncThunk("user/register", async (user, thunkAPI) => {
       return "Account created Successfully";
     } else {
       const { email } = response.data;
-      console.log(email);
+
       return (thunkAPI.rejectWithValue = `${email} is already taken`);
     }
   } catch (error) {
@@ -28,18 +28,20 @@ const login = createAsyncThunk("user/login", async (user, thunkAPI) => {
       process.env.REACT_APP_API_URL + "user/login",
       user
     );
-
+    if (response.data === "error") {
+      return thunkAPI.rejectWithValue("Server error..Try again");
+    }
     if (response.data === "Wrong email or password") {
       return thunkAPI.rejectWithValue("Wrong email or password");
     }
     if (response.data === "User not found") {
       return thunkAPI.rejectWithValue("User not found");
     } else {
-      const user = response.data;
+      const { cart, ...user } = response.data;
 
       localStorage.setItem("user", JSON.stringify(user));
-
-      return user;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      return { cart, user };
     }
   } catch (error) {
     return thunkAPI.rejectWithValue(
@@ -50,7 +52,7 @@ const login = createAsyncThunk("user/login", async (user, thunkAPI) => {
 
 const logout = createAsyncThunk(
   "logout",
-  async () => await localStorage.removeItem("user")
+  async () => await localStorage.clear()
 );
 
 export { register, login, logout };

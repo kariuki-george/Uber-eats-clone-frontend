@@ -14,6 +14,7 @@ import { clearState } from "../state/slices/restaurantSlice";
 function Hotel() {
   const [showModal, setShowModal] = useState(false);
   const [modalInfo, setModalInfo] = useState({});
+  const [dishes, setDishes] = useState([]);
   const location = useLocation();
   const id = location.pathname.split(":")[1];
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function Hotel() {
       dispatch(clearState());
     }
   }, [isError]);
+  useEffect(() => {
+    setDishes(menu);
+  }, [menu]);
   return (
     <div className="hotel">
       <Navbar />
@@ -50,13 +54,13 @@ function Hotel() {
       <div className="Menu">
         <h4>Menu</h4>
         <ul>
-          {menu.map((food) => {
+          {dishes.map((food) => {
             return (
               <li
                 key={food._id}
                 onClick={() => {
                   setModalInfo(food);
-                  
+
                   setShowModal(true);
                 }}
               >

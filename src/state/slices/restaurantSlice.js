@@ -50,6 +50,7 @@ const restaurantSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload;
+      state.menu = [];
     },
     [getMenu.fulfilled]: (state, { payload }) => {
       state.isSuccess = true;

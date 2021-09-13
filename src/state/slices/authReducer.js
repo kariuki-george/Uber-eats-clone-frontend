@@ -1,7 +1,12 @@
 import { login, logout, register } from "../../services/auth";
+import addToCart from "../../services/cart";
 import { createSlice } from "@reduxjs/toolkit";
+let userData = JSON.parse(localStorage.getItem("user"));
+let cart = JSON.parse(localStorage.getItem("cart"));
 
-const userData = JSON.parse(localStorage.getItem("user"));
+if (cart) {
+  userData.cart = cart;
+}
 
 const initialState = userData
   ? { isLoggedIn: true, userData }
@@ -14,6 +19,7 @@ const initialState = userData
       userData: {
         username: "",
         email: "",
+        cart: cart ? cart : [],
       },
     };
 
@@ -36,7 +42,8 @@ export const userSlice = createSlice({
       state.isFetching = false;
     },
     [login.fulfilled]: (state, action) => {
-      state.user = action.payload;
+      state.userData = action.payload.user;
+      state.userData.cart = action.payload.cart;
       state.isLoggedIn = true;
       state.isSuccess = true;
       state.isFetching = false;
@@ -60,6 +67,20 @@ export const userSlice = createSlice({
     },
     [logout.fulfilled]: (state) => {
       state.isLoggedIn = false;
+    },
+    [addToCart.rejected]: (state, { payload }) => {
+      state.isError = true;
+      state.errorMessage = payload;
+      state.isFetching = false;
+    },
+    [addToCart.fulfilled]: (state, action) => {
+      state.userData.cart = action.payload;
+      state.isLoggedIn = true;
+      state.isSuccess = true;
+      state.isFetching = false;
+    },
+    [addToCart.pending]: (state, action) => {
+      state.isFetching = true;
     },
   },
 });

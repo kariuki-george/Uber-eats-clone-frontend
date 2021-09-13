@@ -1,30 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./Modal.scss";
 import CloseIcon from "@material-ui/icons/Close";
-
+import addToCart from "../services/cart";
+import toast from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
-import { createOrder, addAmount } from "../state/slices/ordersSlice";
+import { clearState } from "../state/slices/authReducer";
 
 function Modal({ setShowModal, modalInfo }) {
   const dispatch = useDispatch();
   const { orders } = useSelector((state) => state.orders);
+  const { cart, _id } = useSelector((state) => state.user.userData);
+  const { isError, isSuccess, errorMessage } = useSelector(
+    (state) => state.user
+  );
   const [num, setNum] = useState(0);
-
-  useEffect(() => {
-    if (orders.length === 0) {
-      return setNum(0);
-    }
-    const present = orders.find((order) => order._id === modalInfo._id);
-    if (present) {
-      orders.forEach((order) => {
-        if (order._id === modalInfo._id) {
-          return setNum(order.food_amount);
-        }
-      });
-    } else {
-      return setNum(0);
-    }
-  }, []);
 
   const handleOrder = (arg) => {
     if (arg === "subtract") {
@@ -43,25 +32,32 @@ function Modal({ setShowModal, modalInfo }) {
     }
 
     if (orders.length === 0) {
-      dispatch(createOrder({ ...modalInfo, food_amount: num }));
-      setShowModal(false);
-      return;
-    }
-    const present = orders.find((order) => order._id === modalInfo._id);
-    if (present) {
+      dispatch(clearState());
       dispatch(
-        addAmount({
-          id: modalInfo._id,
-          amount: num,
+        addToCart({
+          user_id: _id,
+          restaurant_id: modalInfo.restaurant_id,
+          food_id: modalInfo._id,
+          food_amount: num,
+          cart,
+          food_name: modalInfo.name,
+          food_price: modalInfo.price,
         })
       );
       setShowModal(false);
       return;
-    } else {
-      dispatch(createOrder({ ...modalInfo, food_amount: num }));
-      setShowModal(false);
     }
   };
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Added to cart successfully");
+      return dispatch(clearState());
+    }
+    if (isError) {
+      toast.error(errorMessage);
+      return dispatch(clearState());
+    }
+  }, [isSuccess, isError]);
 
   return (
     <div className="foodorder">

@@ -10,10 +10,34 @@
   left: 0px;
   top: 0px;
   border-right: 1px var(--border-color) solid;
-  h3 {
+  h3,
+  h2 {
     margin: 1em;
     text-align: center;
   }
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    li {
+      width: 80%;
+      padding: 1em;
+      border-bottom: 1px var(--border-color) solid;
+      padding-bottom: 5px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    input {
+      height: 20px;
+      width: 20px;
+    }
+  }
+
   div {
     margin-top: 1em;
     padding: 1px 1em;
@@ -22,18 +46,22 @@
     ul {
       display: flex;
       flex-direction: column;
+      align-items: center;
       li {
+        width: 90%;
+        padding: 1em;
+        box-shadow: 1px 1px 1px 1px var(--shadow-color);
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
-        border-bottom: 1px var(--border-color) solid;
-        opacity: 0.5;
+
+        opacity: 0.9;
 
         div {
           display: flex;
           align-items: baseline;
-          h6 {
-            margin: 0.5em;
+          h5 {
+            margin: 1em;
           }
         }
         input {

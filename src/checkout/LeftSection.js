@@ -1,15 +1,65 @@
 import React, { useEffect, useState } from "react";
 import "./LeftSection.scss";
 import Navbar from "./Navbar";
+import { useSelector } from "react-redux";
 
-function LeftSection({ orders }) {
+function LeftSection({ orders, setHotel }) {
+  const { cart } = useSelector((state) => state.user.userData);
+
+  const [checkedHotel, setCheckedHotel] = useState("");
+  const [checked, setChecked] = useState(false);
+  const [hotels, setHotels] = useState([]);
+
+  useEffect(() => {
+    const list = [];
+    cart.forEach((food) => list.push(food.restaurant_name));
+    setHotels([...new Set(list)]);
+  }, []);
+
+  useEffect(() => {
+    setHotel(checkedHotel);
+  }, [checked]);
+
   return (
     <div className="leftSection">
       <Navbar />
 
-      <h2>Choose where to order from</h2>
+      {checked || <h2>Choose where to order from</h2>}
 
-      <h3>Dam View Res</h3>
+      <section>
+        {checked ? (
+          <li>
+            <h3>{checkedHotel} </h3>
+
+            <input
+              type="checkbox"
+              value={true}
+              onChange={() => {
+                setCheckedHotel("");
+                setChecked(!checked);
+              }}
+            />
+          </li>
+        ) : (
+          hotels.map((hotel) => {
+            return (
+              <li key={hotel}>
+                <h4>{hotel} </h4>
+
+                <input
+                  type="checkbox"
+                  name={hotel}
+                  onChange={() => {
+                    setCheckedHotel(hotel);
+                    setChecked(!checked);
+                  }}
+                />
+              </li>
+            );
+          })
+        )}
+      </section>
+
       <div className="map">map</div>
       <div className="location">
         <div>
@@ -27,11 +77,11 @@ function LeftSection({ orders }) {
             return (
               <li>
                 <div>
-                  <h6>{order.food_amount}</h6>
-                  <h5>{order.name}</h5>
+                  <h5>{order.food_amount}</h5>
+                  <h4>{order.food_name}</h4>
                 </div>
                 <div>
-                  <h5>{order.food_amount * order.price}</h5>
+                  <h5>{order.food_amount * order.food_price}</h5>
                 </div>
                 {orders.length > 1 && (
                   <div>
