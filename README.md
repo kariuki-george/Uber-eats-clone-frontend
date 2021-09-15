@@ -5,3 +5,6 @@ I'm working on cloning the webApp to utilize my beginner skills in web dev.
 * React js
 * Redux
 
+## Site is hosted on Netlify
+<uber-eats-clone.netlify.app>
+
