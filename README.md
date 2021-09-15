@@ -7,5 +7,5 @@ I'm working on cloning the webApp to utilize my beginner skills in web dev.
 
 ### Production is still in progress
 ### Site is hosted on Netlify
- --> [click here](uber-eats-clone.netlify.app)
+ * [uber-eats-clone.netlify.app]: uber-eats-clone.netlify.app  
 
